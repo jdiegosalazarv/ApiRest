@@ -25,12 +25,12 @@ public class StudentDTO {
         this.id = id;
     }
 
-    public StudentDTO(Integer id, String name, String lastName, String birthDay, Subject subject) {
+    public StudentDTO(Integer id, String name, String lastName, String birthDay, Integer age, Subject subject) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.birthDay = LocalDate.parse(birthDay);
-        this.age = Period.between(this.birthDay, LocalDate.now()).getYears();
+        this.age = age;
         this.subject = subject;
     }
 
@@ -73,6 +73,10 @@ public class StudentDTO {
 
     public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public void setAge(Integer age){
+        this.age = age;
     }
 
     public Integer getAge() {

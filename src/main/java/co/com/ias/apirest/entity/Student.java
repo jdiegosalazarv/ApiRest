@@ -33,12 +33,12 @@ public class Student {
         this.id = id;
     }
 
-    public Student(Integer id, String name, String lastName, LocalDate birthDay, Subject subject) {
+    public Student(Integer id, String name, String lastName, LocalDate birthDay, Integer age, Subject subject) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.birthDay = birthDay;
-        this.age = Period.between(this.birthDay, LocalDate.now()).getYears();
+        this.age = age;
         this.subject = subject;
     }
 

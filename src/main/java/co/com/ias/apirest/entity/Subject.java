@@ -2,10 +2,7 @@ package co.com.ias.apirest.entity;
 
 import co.com.ias.apirest.dto.SubjectDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,7 +14,7 @@ public class Subject {
     @OneToMany
     private List<Student> students;
 
-    @OneToOne
+    @ManyToOne
     private Teacher teacher;
     private String schedule;
     private String topic;

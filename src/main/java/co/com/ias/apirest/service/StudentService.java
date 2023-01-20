@@ -5,6 +5,8 @@ import co.com.ias.apirest.entity.Student;
 import co.com.ias.apirest.repository.IStudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +23,7 @@ public class StudentService implements IStudentService{
     @Override
     public void saveStudent(StudentDTO studentDTO) {
         if(!this.iStudentRepository.existsById(studentDTO.getId())){
+            studentDTO.setAge(this.calculateAge(studentDTO));
             this.iStudentRepository.save(new Student(studentDTO));
         }
     }
@@ -49,5 +52,9 @@ public class StudentService implements IStudentService{
         if(this.iStudentRepository.existsById(studentDTO.getId())){
             this.iStudentRepository.deleteById(studentDTO.getId());
         }
+    }
+
+    private Integer calculateAge(StudentDTO studentDTO){
+        return Period.between(studentDTO.getBirthDay(), LocalDate.now()).getYears();
     }
 }
