@@ -23,7 +23,7 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveTeacher(TeacherDTO teacherDTO){
+    public ResponseEntity<?> saveTeacher(@RequestBody TeacherDTO teacherDTO){
         this.iTeacherService.saveTeacher(teacherDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -34,13 +34,13 @@ public class TeacherController {
 //    }
 
     @PutMapping
-    public ResponseEntity<?> updateTeacher(TeacherDTO teacherDTO){
+    public ResponseEntity<?> updateTeacher(@RequestBody TeacherDTO teacherDTO){
         this.iTeacherService.updateTeacher(teacherDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteStudent(TeacherDTO teacherDTO){
+    public ResponseEntity<?> deleteStudent(@RequestBody TeacherDTO teacherDTO){
         this.iTeacherService.deleteTeacher(teacherDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

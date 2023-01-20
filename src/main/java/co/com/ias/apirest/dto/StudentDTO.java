@@ -3,6 +3,8 @@ package co.com.ias.apirest.dto;
 import co.com.ias.apirest.entity.Student;
 import co.com.ias.apirest.entity.Subject;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 import java.util.Optional;
 
@@ -12,18 +14,19 @@ public class StudentDTO {
     private Integer id;
     private String name;
     private String lastName;
-    private Date birthDay;
+    private LocalDate birthDay;
     private Integer age;
     private Subject subject;
 
     public StudentDTO(Optional<Student> byId) {
     }
 
-    public StudentDTO(Integer id, String name, String lastName, Date birthDay, Subject subject) {
+    public StudentDTO(Integer id, String name, String lastName, String birthDay, Subject subject) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.birthDay = birthDay;
+        this.birthDay = LocalDate.parse(birthDay);
+        this.age = Period.between(this.birthDay, LocalDate.now()).getYears();
         this.subject = subject;
     }
 
@@ -32,6 +35,7 @@ public class StudentDTO {
         this.name = student.getName();
         this.lastName = student.getLastName();
         this.birthDay = student.getBirthDay();
+        this.age = student.getAge();
         this.subject = student.getSubject();
     }
 
@@ -59,11 +63,11 @@ public class StudentDTO {
         this.lastName = lastName;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
     }
 

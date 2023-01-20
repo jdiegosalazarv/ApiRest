@@ -6,7 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 public class Student {
@@ -18,7 +19,7 @@ public class Student {
     @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
-    private Date birthDay;
+    private LocalDate birthDay;
     @Column(nullable = false)
     private Integer age;
     @OneToOne
@@ -28,11 +29,12 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer id, String name, String lastName, Date birthDay, Subject subject) {
+    public Student(Integer id, String name, String lastName, LocalDate birthDay, Subject subject) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.birthDay = birthDay;
+        this.age = Period.between(this.birthDay, LocalDate.now()).getYears();
         this.subject = subject;
     }
 
@@ -41,6 +43,7 @@ public class Student {
         this.name = studentDTO.getName();
         this.lastName = studentDTO.getLastName();
         this.birthDay = studentDTO.getBirthDay();
+        this.age = studentDTO.getAge();
         this.subject = studentDTO.getSubject();
     }
 
@@ -68,11 +71,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
     }
 

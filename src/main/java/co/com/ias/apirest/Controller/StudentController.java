@@ -22,7 +22,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveStudent(StudentDTO studentDTO){
+    public ResponseEntity<?> saveStudent(@RequestBody StudentDTO studentDTO){
         this.iStudentService.saveStudent(studentDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -33,13 +33,13 @@ public class StudentController {
 //    }
 
     @PutMapping
-    public ResponseEntity<?> updateStudent(StudentDTO studentDTO){
+    public ResponseEntity<?> updateStudent(@RequestBody StudentDTO studentDTO){
         this.iStudentService.updateStudent(studentDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteStudent(StudentDTO studentDTO){
+    public ResponseEntity<?> deleteStudent(@RequestBody StudentDTO studentDTO){
         this.iStudentService.deleteStudent(studentDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

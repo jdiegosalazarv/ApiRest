@@ -18,6 +18,7 @@ public class Teacher {
 
     @OneToMany
     private List<Subject> subjects;
+
     public Teacher() {
     }
 

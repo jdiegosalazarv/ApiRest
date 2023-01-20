@@ -23,7 +23,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveSubject(SubjectDTO subjectDTO){
+    public ResponseEntity<?> saveSubject(@RequestBody SubjectDTO subjectDTO){
         this.iSubjectService.saveSubject(subjectDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -34,13 +34,13 @@ public class SubjectController {
 //    }
 
     @PutMapping
-    public ResponseEntity<?> updateSubject(SubjectDTO subjectDTO){
+    public ResponseEntity<?> updateSubject(@RequestBody SubjectDTO subjectDTO){
         this.iSubjectService.updateSubject(subjectDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteSubject(SubjectDTO subjectDTO){
+    public ResponseEntity<?> deleteSubject(@RequestBody SubjectDTO subjectDTO){
         this.iSubjectService.deleteSubject(subjectDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
