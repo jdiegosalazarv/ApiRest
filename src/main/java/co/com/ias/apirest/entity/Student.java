@@ -29,6 +29,10 @@ public class Student {
     public Student() {
     }
 
+    public Student(Integer id) {
+        this.id = id;
+    }
+
     public Student(Integer id, String name, String lastName, LocalDate birthDay, Subject subject) {
         this.id = id;
         this.name = name;

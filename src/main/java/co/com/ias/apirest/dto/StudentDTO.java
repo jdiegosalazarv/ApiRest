@@ -18,7 +18,11 @@ public class StudentDTO {
     private Integer age;
     private Subject subject;
 
-    public StudentDTO(Optional<Student> byId) {
+    public StudentDTO() {
+    }
+
+    public StudentDTO(Integer id) {
+        this.id = id;
     }
 
     public StudentDTO(Integer id, String name, String lastName, String birthDay, Subject subject) {

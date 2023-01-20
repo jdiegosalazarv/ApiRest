@@ -15,7 +15,7 @@ public class SubjectDTO {
     private String schedule;
     private String topic;
 
-    public SubjectDTO(Optional<Subject> byId) {
+    public SubjectDTO() {
     }
 
     public SubjectDTO(Integer id, List<Student> students, Teacher teacher, String schedule, String topic) {

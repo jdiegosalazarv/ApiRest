@@ -13,7 +13,11 @@ public class TeacherDTO {
     private Integer age;
     private List<Subject> subjects;
 
-    public TeacherDTO(Optional<Teacher> byId) {
+    public TeacherDTO() {
+    }
+
+    public TeacherDTO(Integer id) {
+        this.id = id;
     }
 
     public TeacherDTO(Integer id, String name, String lastName, Integer age, List<Subject> subjects) {

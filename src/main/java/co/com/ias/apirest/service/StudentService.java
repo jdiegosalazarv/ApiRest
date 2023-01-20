@@ -6,6 +6,7 @@ import co.com.ias.apirest.repository.IStudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +33,8 @@ public class StudentService implements IStudentService{
 
     @Override
     public StudentDTO findStudentById(StudentDTO studentDTO) {
-        return new StudentDTO(this.iStudentRepository.findById(studentDTO.getId()));
+        Optional<Student> student = this.iStudentRepository.findById(studentDTO.getId());
+        return student.map(StudentDTO::new).orElse(null);
     }
 
     @Override

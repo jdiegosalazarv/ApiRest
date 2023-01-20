@@ -22,6 +22,10 @@ public class Teacher {
     public Teacher() {
     }
 
+    public Teacher(Integer id) {
+        this.id = id;
+    }
+
     public Teacher(Integer id, String name, String lastName, Integer age, List<Subject> subjects) {
         this.id = id;
         this.name = name;

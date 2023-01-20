@@ -25,6 +25,10 @@ public class Subject {
     public Subject() {
     }
 
+    public Subject(Integer id) {
+        this.id = id;
+    }
+
     public Subject(Integer id, List<Student> students, Teacher teacher, String schedule, String topic) {
         this.id = id;
         this.students = students;

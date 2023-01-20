@@ -8,6 +8,7 @@ import co.com.ias.apirest.repository.ITeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +35,8 @@ public class TeacherService implements ITeacherService{
 
     @Override
     public TeacherDTO findTeacherById(TeacherDTO teacherDTO) {
-        return new TeacherDTO(this.iTeacherRepository.findById(teacherDTO.getId()));
+        Optional<Teacher> teacher = this.iTeacherRepository.findById(teacherDTO.getId());
+        return teacher.map(TeacherDTO::new).orElse(null);
     }
 
     @Override
@@ -45,9 +47,9 @@ public class TeacherService implements ITeacherService{
     }
 
     @Override
-    public void deleteTeacher(TeacherDTO teacherDTO) {
-        if(this.iTeacherRepository.existsById(teacherDTO.getId())){
-            this.iTeacherRepository.deleteById(teacherDTO.getId());
+    public void deleteTeacher(Integer teacherId) {
+        if(this.iTeacherRepository.existsById(teacherId)){
+            this.iTeacherRepository.deleteById(teacherId);
         }
     }
 }
