@@ -1,6 +1,7 @@
 package co.com.ias.apirest.entity;
 
 import co.com.ias.apirest.dto.TeacherDTO;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +17,8 @@ public class Teacher {
     private String lastName;
     private Integer age;
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "teacher")
     private List<Subject> subjects;
 
     public Teacher() {

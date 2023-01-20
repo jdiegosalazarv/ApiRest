@@ -1,6 +1,8 @@
 package co.com.ias.apirest.entity;
 
 import co.com.ias.apirest.dto.SubjectDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,10 +13,13 @@ public class Subject {
     @Id
     private Integer id;
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "subject")
     private List<Student> students;
 
+    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
     private String schedule;
     private String topic;

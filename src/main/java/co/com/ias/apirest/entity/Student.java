@@ -1,11 +1,9 @@
 package co.com.ias.apirest.entity;
 
 import co.com.ias.apirest.dto.StudentDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -22,7 +20,9 @@ public class Student {
     private LocalDate birthDay;
     @Column(nullable = false)
     private Integer age;
-    @OneToOne
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
 //    @Column(nullable = false)
     private Subject subject;
 
