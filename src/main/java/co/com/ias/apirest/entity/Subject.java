@@ -1,11 +1,10 @@
 package co.com.ias.apirest.entity;
 
 import co.com.ias.apirest.dto.SubjectDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,15 +13,22 @@ public class Subject {
     @Id
     private Integer id;
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "subject")
     private List<Student> students;
 
-    @OneToOne
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
     private String schedule;
     private String topic;
 
     public Subject() {
+    }
+
+    public Subject(Integer id) {
+        this.id = id;
     }
 
     public Subject(Integer id, List<Student> students, Teacher teacher, String schedule, String topic) {

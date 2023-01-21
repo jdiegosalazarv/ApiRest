@@ -8,6 +8,7 @@ import co.com.ias.apirest.repository.ISubjectRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +35,8 @@ public class SubjectService implements ISubjectService{
 
     @Override
     public SubjectDTO findSubjectById(SubjectDTO subjectDTO) {
-        return new SubjectDTO(this.iSubjectRepository.findById(subjectDTO.getId()));
+        Optional<Subject> subject = this.iSubjectRepository.findById(subjectDTO.getId());
+        return subject.map(SubjectDTO::new).orElse(null);
     }
 
     @Override

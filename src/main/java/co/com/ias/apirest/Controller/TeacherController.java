@@ -40,8 +40,8 @@ public class TeacherController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteStudent(@RequestBody TeacherDTO teacherDTO){
-        this.iTeacherService.deleteTeacher(teacherDTO);
+    public ResponseEntity<?> deleteTeacher(@RequestBody TeacherDTO teacherDTO){
+        this.iTeacherService.deleteTeacher(teacherDTO.getId());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
