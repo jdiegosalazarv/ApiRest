@@ -5,6 +5,8 @@ import co.com.ias.apirest.entity.Subject;
 import co.com.ias.apirest.entity.Teacher;
 
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,9 @@ public class SubjectDTO {
     private List<Student> students;
     private Teacher teacher;
     private String schedule;
+
+    @Pattern(regexp = "[a-zA-Z0-9\\s]+")
+    @Size(max = 200)
     private String topic;
 
     public SubjectDTO() {

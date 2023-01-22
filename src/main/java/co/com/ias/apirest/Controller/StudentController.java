@@ -27,10 +27,10 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @GetMapping
-//    public ResponseEntity<?> getStudent(StudentDTO studentDTO){
-//        return ResponseEntity.ok().body(this.iStudentService.findStudentById(studentDTO));
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getStudent(@PathVariable Integer id){
+        return ResponseEntity.ok().body(this.iStudentService.findStudentById(id));
+    }
 
     @PutMapping
     public ResponseEntity<?> updateStudent(@RequestBody StudentDTO studentDTO){

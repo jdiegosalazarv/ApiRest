@@ -35,8 +35,8 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    public StudentDTO findStudentById(StudentDTO studentDTO) {
-        Optional<Student> student = this.iStudentRepository.findById(studentDTO.getId());
+    public StudentDTO findStudentById(Integer id) {
+        Optional<Student> student = this.iStudentRepository.findById(id);
         return student.map(StudentDTO::new).orElse(null);
     }
 

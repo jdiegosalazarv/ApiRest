@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -22,6 +24,7 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
     private String schedule;
+
     private String topic;
 
     public Subject() {

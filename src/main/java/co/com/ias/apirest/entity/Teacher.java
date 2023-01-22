@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Entity
@@ -13,10 +15,12 @@ public class Teacher {
 
     @Id
     private Integer id;
-    private String name;
-    private String lastName;
-    private Integer age;
 
+    private String name;
+
+    private String lastName;
+    private Integer personalId;
+    private Integer age;
     @JsonManagedReference
     @OneToMany(mappedBy = "teacher")
     private List<Subject> subjects;
@@ -28,10 +32,11 @@ public class Teacher {
         this.id = id;
     }
 
-    public Teacher(Integer id, String name, String lastName, Integer age, List<Subject> subjects) {
+    public Teacher(Integer id, String name, String lastName, Integer personalId, Integer age, List<Subject> subjects) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+        this.personalId = personalId;
         this.age = age;
         this.subjects = subjects;
     }
@@ -40,6 +45,7 @@ public class Teacher {
         this.id = teacherDTO.getId();
         this.name = teacherDTO.getName();
         this.lastName = teacherDTO.getLastName();
+        this.personalId = teacherDTO.getPersonalId();
         this.age = teacherDTO.getAge();
         this.subjects = teacherDTO.getSubjects();
     }
@@ -66,6 +72,14 @@ public class Teacher {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Integer getPersonalId() {
+        return personalId;
+    }
+
+    public void setPersonalId(Integer personalId) {
+        this.personalId = personalId;
     }
 
     public Integer getAge() {

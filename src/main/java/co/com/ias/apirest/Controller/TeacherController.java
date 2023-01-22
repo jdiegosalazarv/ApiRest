@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
@@ -23,7 +25,7 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveTeacher(@RequestBody TeacherDTO teacherDTO){
+    public ResponseEntity<?> saveTeacher(@RequestBody @Valid TeacherDTO teacherDTO){
         this.iTeacherService.saveTeacher(teacherDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

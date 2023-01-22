@@ -4,6 +4,8 @@ import co.com.ias.apirest.dto.StudentDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -11,6 +13,7 @@ import java.time.Period;
 public class Student {
 
     @Id
+    @Column(nullable = false)
     private Integer id;
     @Column(nullable = false)
     private String name;
@@ -18,6 +21,8 @@ public class Student {
     private String lastName;
     @Column(nullable = false)
     private LocalDate birthDay;
+    @Column(nullable = false)
+    private Integer personalId;
     @Column(nullable = false)
     private Integer age;
     @JsonBackReference
@@ -33,11 +38,12 @@ public class Student {
         this.id = id;
     }
 
-    public Student(Integer id, String name, String lastName, LocalDate birthDay, Integer age, Subject subject) {
+    public Student(Integer id, String name, String lastName, LocalDate birthDay, Integer personalId, Integer age, Subject subject) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.birthDay = birthDay;
+        this.personalId = personalId;
         this.age = age;
         this.subject = subject;
     }
@@ -47,6 +53,7 @@ public class Student {
         this.name = studentDTO.getName();
         this.lastName = studentDTO.getLastName();
         this.birthDay = studentDTO.getBirthDay();
+        this.personalId = studentDTO.getPersonalId();
         this.age = studentDTO.getAge();
         this.subject = studentDTO.getSubject();
     }
@@ -81,6 +88,14 @@ public class Student {
 
     public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public Integer getPersonalId() {
+        return personalId;
+    }
+
+    public void setPersonalId(Integer personalId) {
+        this.personalId = personalId;
     }
 
     public Integer getAge() {

@@ -10,7 +10,7 @@ public interface IStudentService {
 
     List<StudentDTO> getStudents();
 
-    StudentDTO findStudentById(StudentDTO studentDTO);
+    StudentDTO findStudentById(Integer id);
 
     void updateStudent(StudentDTO studentDTO);
 

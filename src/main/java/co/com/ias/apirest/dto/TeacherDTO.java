@@ -3,13 +3,23 @@ package co.com.ias.apirest.dto;
 import co.com.ias.apirest.entity.Subject;
 import co.com.ias.apirest.entity.Teacher;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Optional;
 
 public class TeacherDTO {
+
     private Integer id;
+    @NotBlank(message = "No puede estar vacío")
+    @Pattern(regexp = "[a-zA-Z\\s]+", message = "Solo se admiten letras")
     private String name;
+    @NotBlank(message = "No puede estar vacío")
+    @Pattern(regexp = "[a-zA-Z\\s]+", message = "Solo se admiten letras")
     private String lastName;
+    private Integer personalId;
+    @Digits(integer = 3,fraction = 0, message = "Solo puedes ingresar números")
     private Integer age;
     private List<Subject> subjects;
 
@@ -20,10 +30,11 @@ public class TeacherDTO {
         this.id = id;
     }
 
-    public TeacherDTO(Integer id, String name, String lastName, Integer age, List<Subject> subjects) {
+    public TeacherDTO(Integer id, String name, String lastName, Integer personalId, Integer age, List<Subject> subjects) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+        this.personalId = personalId;
         this.age = age;
         this.subjects = subjects;
     }
@@ -32,6 +43,7 @@ public class TeacherDTO {
         this.id = teacher.getId();
         this.name = teacher.getName();
         this.lastName = teacher.getLastName();
+        this.personalId = teacher.getPersonalId();
         this.age = teacher.getAge();
         this.subjects = teacher.getSubjects();
     }
@@ -60,6 +72,14 @@ public class TeacherDTO {
         this.lastName = lastName;
     }
 
+    public Integer getPersonalId() {
+        return personalId;
+    }
+
+    public void setPersonalId(Integer personalId) {
+        this.personalId = personalId;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -72,7 +92,4 @@ public class TeacherDTO {
         return subjects;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }
 }
