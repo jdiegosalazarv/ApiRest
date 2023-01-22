@@ -2,6 +2,7 @@ package co.com.ias.apirest.Controller;
 
 import co.com.ias.apirest.dto.SubjectDTO;
 import co.com.ias.apirest.dto.TeacherDTO;
+import co.com.ias.apirest.service.IStudentService;
 import co.com.ias.apirest.service.ISubjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class SubjectController {
 
     private final ISubjectService iSubjectService;
+    private final IStudentService iStudentService;
 
-    public SubjectController(ISubjectService iSubjectService) {
+    public SubjectController(ISubjectService iSubjectService, IStudentService iStudentService) {
         this.iSubjectService = iSubjectService;
+        this.iStudentService = iStudentService;
     }
 
     @GetMapping
@@ -43,5 +46,10 @@ public class SubjectController {
     public ResponseEntity<?> deleteSubject(@RequestBody SubjectDTO subjectDTO){
         this.iSubjectService.deleteSubject(subjectDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAllStudentsBySubject(@PathVariable Integer id){
+        return ResponseEntity.ok().body(this.iStudentService.findStudentsBySubject(id));
     }
 }

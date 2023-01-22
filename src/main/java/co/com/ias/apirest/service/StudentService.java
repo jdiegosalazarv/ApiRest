@@ -54,6 +54,11 @@ public class StudentService implements IStudentService{
         }
     }
 
+    @Override
+    public List<StudentDTO> findStudentsBySubject(Integer subjectId) {
+        return this.iStudentRepository.findBySubjectId(subjectId);
+    }
+
     private Integer calculateAge(StudentDTO studentDTO){
         return Period.between(studentDTO.getBirthDay(), LocalDate.now()).getYears();
     }

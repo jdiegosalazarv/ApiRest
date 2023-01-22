@@ -15,4 +15,6 @@ public interface IStudentService {
     void updateStudent(StudentDTO studentDTO);
 
     void deleteStudent(StudentDTO studentDTO);
+
+    List<StudentDTO> findStudentsBySubject(Integer subjectId);
 }
